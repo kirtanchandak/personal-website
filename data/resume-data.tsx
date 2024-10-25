@@ -149,7 +149,7 @@ export const RESUME_DATA = {
       ],
     },
     {
-      company: "Frontend Intern",
+      company: "Soshals",
       link: "https://www.soshals.app/",
       badges: ["Remote"],
       title: "Frontend Intern",
