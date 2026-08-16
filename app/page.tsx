@@ -1,36 +1,5 @@
 import Image from "next/image";
 
-const socials = [
-  {
-    name: "GitHub",
-    handle: "kirtanchandak",
-    meta: "1.2k",
-    href: "https://github.com/kirtanchandak",
-    icon: "github" as const,
-  },
-  {
-    name: "LinkedIn",
-    handle: "kirtanchandak",
-    meta: "800",
-    href: "https://linkedin.com/in/kirtanchandak",
-    icon: "linkedin" as const,
-  },
-  {
-    name: "Twitter",
-    handle: "@kirtanchandak",
-    meta: "420",
-    href: "https://x.com/kirtanchandak",
-    icon: "twitter" as const,
-  },
-  {
-    name: "Email",
-    handle: "say hi",
-    meta: "write",
-    href: "mailto:kirtanmchandak5@gmail.com",
-    icon: "email" as const,
-  },
-];
-
 const experience = [
   {
     logo: "/kuration-logo.png",
@@ -165,7 +134,7 @@ const label = "mb-2.5 text-xs font-bold uppercase tracking-[0.12em] text-neutral
 const lede = "mb-7 max-w-[560px] text-[15px] leading-[1.65] text-neutral-700";
 const section = "pb-20 max-[560px]:pb-14";
 
-function SocialIcon({ name }: { name: (typeof socials)[number]["icon"] }) {
+function SocialIcon({ name }: { name: "github" | "linkedin" | "twitter" }) {
   const className = "size-4";
   if (name === "github") {
     return (
@@ -225,15 +194,15 @@ export default function Home() {
         <Image
           src="/kirtan.webp"
           alt="Kirtan Chandak"
-          width={88}
-          height={88}
+          width={92}
+          height={92}
           priority
-          className="mb-7 size-[88px] rounded-full object-cover transition-transform duration-300 hover:scale-105"
+          className="mb-7 size-[120px] rounded-full object-cover transition-transform duration-300 hover:scale-105"
         />
-        <h1 className="text-[44px] font-bold leading-[1.1] tracking-[-0.04em] text-neutral-900 max-[720px]:text-[32px]">
+        <h1 className="font-display text-[44px] font-bold leading-[1.1] tracking-[-0.04em] text-neutral-900 max-[720px]:text-[32px]">
           Software Developer.
         </h1>
-        <p className="mt-2.5 text-[22px] font-bold leading-snug tracking-[-0.03em] text-neutral-900">
+        <p className="font-display mt-2.5 text-[22px] font-bold leading-snug tracking-[-0.03em] text-neutral-900">
           Building AI agents and why tooling matters.
         </p>
         <div id="about" className="mt-7 max-w-[560px] scroll-mt-8 space-y-4 text-base leading-[1.7] text-neutral-700">
@@ -264,31 +233,6 @@ export default function Home() {
             </a>
           </p>
         </div>
-      </section>
-
-      <section className="pb-16 pt-2">
-        <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.08em]">Socials</h2>
-        <ul className="flex flex-col gap-3.5">
-          {socials.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.href}
-                target={item.icon === "email" ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                className="flex min-h-10 items-center gap-3 text-inherit no-underline"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-neutral-100">
-                  <SocialIcon name={item.icon} />
-                </span>
-                <span className="flex min-w-0 flex-1 flex-col">
-                  <span className="text-sm font-semibold tracking-[-0.01em]">{item.name}</span>
-                  <span className="text-xs text-neutral-500">{item.handle}</span>
-                </span>
-                <span className="shrink-0 text-xs text-neutral-400">{item.meta}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section className={section}>
@@ -478,14 +422,37 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="contact" className="scroll-mt-6 pt-2 text-center">
-        <p className="text-sm text-neutral-700">
-          Open to SWE and forward-deployed roles.{" "}
-          <a href="mailto:kirtanmchandak5@gmail.com" className="font-medium text-neutral-900">
-            kirtanmchandak5@gmail.com
+      <footer
+        id="contact"
+        className="mt-4 flex scroll-mt-6 items-center justify-between gap-6 border-t border-neutral-200 py-8 text-sm text-neutral-500 max-sm:flex-col max-sm:items-start"
+      >
+        <p>28°C / 82°F · Pune, India</p>
+        <nav className="flex flex-wrap gap-6">
+          <a
+            href="https://github.com/kirtanchandak"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-800"
+          >
+            GitHub
           </a>
-        </p>
-        <p className="mt-7 text-xs text-neutral-400">© 2026 Kirtan Chandak · Pune</p>
+          <a
+            href="https://x.com/kirtanchandak"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-800"
+          >
+            Twitter (X)
+          </a>
+          <a
+            href="https://linkedin.com/in/kirtanchandak"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-800"
+          >
+            LinkedIn
+          </a>
+        </nav>
       </footer>
     </main>
   );
