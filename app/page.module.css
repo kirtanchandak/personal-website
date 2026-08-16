@@ -1,0 +1,105 @@
+/* Subpages still import this module */
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.eyebrow,
+.sectionHead {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin-bottom: 12px;
+}
+
+.heroH1 {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.heroH1 em {
+  font-style: italic;
+}
+
+.lede,
+.avail {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #444;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 40px 0;
+}
+
+.projGrid,
+.proj,
+.role {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.proj,
+.role {
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.projTop,
+.roleTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  color: #6b6b6b;
+}
+
+.role {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.photoBlock {
+  margin-top: 8px;
+}
+
+.ph {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.phImgDefault,
+.phImgHover {
+  object-fit: cover;
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #6b6b6b;
+}
+
+.rail {
+  display: none;
+}
