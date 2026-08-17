@@ -32,22 +32,18 @@ const workTones = {
 
 const work = [
   {
+    title: "groundtruth",
+    desc: "An autonomous AI data steward that continuously audits enterprise databases to detect contradictions and verify records.",
+    tone: "dark" as const,
+    word: "TRUTH",
+    url: "https://github.com/kirtanchandak/groundtruth",
+  },
+  {
     title: "Baton, Slack handoff agent",
     desc: "Keeps context alive across async agent handoffs. Built for the Slack Agent Hackathon.",
     tone: "yellow" as const,
     word: null,
-  },
-  {
-    title: "rant, journaling with memory",
-    desc: "A private journal with pgvector search so old notes come back when you need them.",
-    tone: "dark" as const,
-    word: "RANT",
-  },
-  {
-    title: "agent-dispatch, multi-agent CLI",
-    desc: "Compares raw outputs from a few coding agents and lines them up on one timeline.",
-    tone: "blue" as const,
-    word: null,
+    url: "https://github.com/flex3-org/baton",
   },
 ];
 
@@ -60,10 +56,10 @@ const thumbTones = {
 const sideProjects = [
   {
     title: "llmbuys",
-    desc: "Audits your website by asking the questions customers ask AI, and tests if it gets the answers right.",
+    desc: "An AI agent skill that audits your website by testing what AI says about your product to customers.",
     tone: "peach" as const,
     url: "https://github.com/kirtanchandak/llmbuys",
-    emoji: "🛍️",
+    emoji: "🧐",
   },
   {
     title: "rant",
@@ -71,6 +67,13 @@ const sideProjects = [
     tone: "ink" as const,
     url: "https://github.com/kirtanchandak/rant",
     emoji: "🧠",
+  },
+  {
+    title: "weekend.warrior",
+    desc: "A retro-themed GitHub analyzer that tracks your weekend commits with a CRT aesthetic.",
+    tone: "mint" as const,
+    url: "https://github.com/kirtanchandak/weekend.warrior",
+    emoji: "🎮",
   },
 ];
 
@@ -133,17 +136,13 @@ const tweets = [
 ];
 
 const mecore = [
-  "People always remember how you made them feel.",
-  "Caring deeply about something is rare, and beautiful.",
-  "Don't judge people. You rarely know their full story.",
-  "Focus on improving your technique, outcomes will follow.",
-  "Just showing up every day can change your life.",
-  "Being fun to work with is a competitive advantage.",
-  "Stay humble. You're not above anyone.",
-  "There is no such thing as a bad decision.",
-  "Being on time is a sign of respect.",
-  "Good taste is a muscle that can be built.",
-  "There's no meaning to life. Find what gives you joy and do more of it.",
+  "I like Daemon Targaryen.",
+  "I love studying profit, loss, stock markets basically everthing finance.",
+  "RCB and RBCs runs through my blood.",
+  "I play badminton sometimes.",
+  "My old 90s playlist and a good drink. Deadly combo.",
+  "Always up for hackathons and building cool stuff.",
+  "and finally suiiiiiiiiiiiiiii!!!",
 ];
 
 const label = "mb-2.5 text-xs font-bold uppercase tracking-[0.12em] text-neutral-900";
@@ -253,7 +252,7 @@ export default async function Home() {
             I write code at odd hours and ship things that mostly work.
           </p>
           <p>
-            Some of the better conversations I have started with a random hello.{" "}
+            Always up for good conversations{" "}
             <a
               href="mailto:kirtanmchandak5@gmail.com"
               className="font-medium text-neutral-900 underline underline-offset-[3px]"
@@ -298,25 +297,37 @@ export default async function Home() {
         </section>
       )}
 
-      {/* <section id="work" className={`flex scroll-mt-6 flex-col gap-14 ${section}`}>
-        {work.map((item) => (
-          <article key={item.title} className="group">
-            <div
-              className={`relative flex h-80 items-center justify-center overflow-hidden rounded-xl transition-transform duration-300 group-hover:-translate-y-0.5 max-[720px]:h-60 ${workTones[item.tone]}`}
+      <section id="work" className={`flex scroll-mt-6 flex-col gap-14 ${section}`}>
+        <h2 className={label}>Recent Work</h2>
+        {work.map((item) => {
+          const Wrapper = item.url ? "a" : "article";
+          return (
+            <Wrapper 
+              key={item.title} 
+              href={item.url}
+              target={item.url ? "_blank" : undefined}
+              rel={item.url ? "noopener noreferrer" : undefined}
+              className="group block hover:bg-neutral-100 p-4 -m-4 rounded-[28px] transition-all duration-300"
             >
-              {item.word ? (
-                <span className="text-4xl font-bold tracking-[0.18em] text-[#6ec8ff] [text-shadow:0_0_28px_rgba(80,180,255,0.7)] max-[720px]:text-4xl min-[721px]:text-[56px]">
-                  {item.word}
-                </span>
-              ) : (
-                <PhonePair />
-              )}
-            </div>
-            <h3 className="mt-4 text-base font-semibold tracking-[-0.02em]">{item.title}</h3>
-            <p className="mt-1 text-sm text-neutral-500">{item.desc}</p>
-          </article>
-        ))}
-      </section> */}
+              <div
+                className={`relative flex h-80 items-center justify-center overflow-hidden rounded-xl transition-transform duration-300 group-hover:-translate-y-0.5 max-[720px]:h-60 ${workTones[item.tone]}`}
+              >
+                {item.word ? (
+                  <span className="text-4xl font-bold tracking-[0.18em] text-[#6ec8ff] [text-shadow:0_0_28px_rgba(80,180,255,0.7)] max-[720px]:text-4xl min-[721px]:text-[56px]">
+                    {item.word}
+                  </span>
+                ) : (
+                  <PhonePair />
+                )}
+              </div>
+              <div className="px-1">
+                <h3 className="mt-4 text-base font-semibold tracking-[-0.02em]">{item.title}</h3>
+                <p className="mt-1 text-sm text-neutral-500">{item.desc}</p>
+              </div>
+            </Wrapper>
+          );
+        })}
+      </section>
 
       <section className={section}>
         <h2 className={label}>Side projects</h2>
@@ -328,7 +339,7 @@ export default async function Home() {
                 href={item.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group flex items-center gap-4 rounded-xl p-2 -m-2 transition-colors"
+                className="group flex items-center gap-5 hover:bg-neutral-100 rounded-2xl p-4 -m-4 transition-all duration-300"
               >
                 <span
                   className={`flex size-[72px] shrink-0 items-center justify-center rounded-[10px] text-[32px] ${thumbTones[item.tone]}`}
@@ -434,7 +445,6 @@ export default async function Home() {
 
       <section className={section}>
         <h2 className={label}>ME CORE</h2>
-        <p className="mb-5 text-[15px] text-neutral-700">In no particular order:</p>
         <ul className="list-disc pl-[18px] space-y-3 marker:text-neutral-400">
           {mecore.map((line) => (
             <li key={line} className="text-[15px] text-neutral-700">
@@ -444,7 +454,7 @@ export default async function Home() {
         </ul>
       </section>
 
-      <section className={section}>
+      {/* <section className={section}>
         <h2 className={label}>Twitter</h2>
         <div className="grid grid-cols-2 gap-4 max-[560px]:grid-cols-1">
           {tweets.map((item) => (
@@ -478,7 +488,7 @@ export default async function Home() {
           </span>
           <p className="text-base font-semibold text-white">Reviewing agent CLIs at 1am</p>
         </div>
-      </section>
+      </section> */}
 
       <footer
         id="contact"

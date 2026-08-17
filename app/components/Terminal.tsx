@@ -15,8 +15,10 @@ const COMMANDS: Record<string, () => ListResult | TextResult | TableResult> = {
     lines: [
       { cmd: "/resume", desc: "download resume as PDF" },
       { cmd: "/exp", desc: "view work experience" },
-      { cmd: "/projects", desc: "view selected projects" },
+      { cmd: "/projects", desc: "view recent work" },
+      { cmd: "/sideprojects", desc: "view side projects" },
       { cmd: "/whoami", desc: "quick bio" },
+      { cmd: "/mecore", desc: "things i like" },
       { cmd: "/contact", desc: "get in touch" },
       { cmd: "clear", desc: "clear the terminal" },
     ],
@@ -24,25 +26,45 @@ const COMMANDS: Record<string, () => ListResult | TextResult | TableResult> = {
   whoami: () => ({
     type: "text",
     lines: [
-      "kirtan chandak",
-      "software developer @ kuration ai, hong kong",
-      "building AI agents, MCP servers, developer tooling",
+      "Kirtan Chandak",
+      "Software Developer",
+      "Building AI agents and why tooling matters.",
     ],
   }),
   exp: () => ({
     type: "table",
     header: ["role", "company", "period"],
     rows: [
-      ["SDE (Full-time)", "Kuration AI", "May 2025 - present"],
-      ["SDE Intern", "Kuration AI", "Nov 2024 - Apr 2025"],
+      ["Founding Engineer", "Kuration AI", "Nov 2024 - Present"],
+      ["Software Developer", "Google Summer of Code", "May 2025 - Sep 2025"],
+      ["LFX Intern, Vitess", "Linux Foundation", "Jun 2024 - Aug 2024"],
     ],
   }),
   projects: () => ({
     type: "list",
     lines: [
-      { cmd: "baton", desc: "Slack handoff/continuity agent. Bolt SDK, Python, Heroku" },
-      { cmd: "rant", desc: "journaling app w/ semantic search + AI memory review" },
-      { cmd: "groundtruth", desc: "AI data steward. Auditor, Researcher, Escalation agents" },
+      { cmd: "groundtruth", desc: "An autonomous AI data steward that continuously audits enterprise databases." },
+      { cmd: "baton", desc: "Keeps context alive across async agent handoffs. Built for Slack." },
+    ],
+  }),
+  sideprojects: () => ({
+    type: "list",
+    lines: [
+      { cmd: "llmbuys", desc: "An AI agent skill that audits your website." },
+      { cmd: "rant", desc: "A private journal with pgvector search." },
+      { cmd: "weekend.warrior", desc: "A retro-themed GitHub analyzer." },
+    ],
+  }),
+  mecore: () => ({
+    type: "text",
+    lines: [
+      "I like Daemon Targaryen.",
+      "I love studying profit, loss, stock markets basically everthing finance.",
+      "RCB and RBCs runs through my blood.",
+      "I play badminton sometimes.",
+      "My old 90s playlist and a good drink. Deadly combo.",
+      "Always up for hackathons and building cool stuff.",
+      "and finally suiiiiiiiiiiiiiii!!!",
     ],
   }),
   resume: () => ({
@@ -87,7 +109,7 @@ const ASCII_LOGO = [
 const BOOT_STEPS = [
   { text: "initializing shell...", delay: 120 },
   { text: "loading kirtan.dev v1.0.0", delay: 120 },
-  { text: "resolving modules: resume, exp, projects, contact", delay: 160 },
+  { text: "resolving modules: resume, exp, projects, sideprojects, mecore", delay: 160 },
   { text: "connecting to github api... ok", delay: 140 },
   { text: "connecting to kuration.ai... ok", delay: 140 },
   { text: "", delay: 80 },
@@ -325,7 +347,7 @@ export default function Terminal() {
             disabled={!booted}
             spellCheck={false}
             className="min-w-0 flex-1 bg-transparent font-mono text-[13.5px] text-[#e8e8e8] outline-none"
-            placeholder={booted ? "try /resume, /exp, /projects, help" : ""}
+            placeholder={booted ? "try /projects, /sideprojects, /mecore, help" : ""}
           />
         </form>
       </div>
