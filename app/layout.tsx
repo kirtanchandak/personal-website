@@ -39,8 +39,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${inter.variable} ${manrope.variable} ${jetbrains.variable} ${inter.className}`}
+      suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <ModeProvider>
           <Nav />
           {children}

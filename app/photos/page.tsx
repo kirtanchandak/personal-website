@@ -34,7 +34,7 @@ export default function PhotosPage() {
               className={styles.phImgDefault}
             />
             <Image
-              src="/daemon-2.jpg"
+              src="/daemon-front.tiff"
               alt="Daemon"
               fill
               sizes="(max-width: 720px) 100vw, 720px"

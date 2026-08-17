@@ -28,10 +28,7 @@ export async function getGitHubContributionsForYear(
   }
 
   const from = `${year}-01-01T00:00:00Z`;
-  const to =
-    year === new Date().getFullYear()
-      ? new Date().toISOString()
-      : `${year}-12-31T23:59:59Z`;
+  const to = `${year}-12-31T23:59:59Z`;
 
   const query = `
     query($username: String!, $from: DateTime!, $to: DateTime!) {

@@ -21,3 +21,8 @@ html[data-mode="nerd"] body {
   background: #0d1117;
   color: #c9d1d9;
 }
+
+::selection {
+  background: #ff2a85;
+  color: #fff;
+}

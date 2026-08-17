@@ -1,24 +1,26 @@
 import Image from "next/image";
 import ModeSwitch from "./components/ModeSwitch";
+import { getGitHubContributionsMultiYear } from "@/lib/github";
+import GitHubGraph from "./components/GitHubGraph";
 
 const experience = [
   {
     logo: "/kuration-logo.png",
     company: "Kuration AI",
     role: "Software Developer",
-    year: "2024",
+    year: "Nov 2024 - Present · 1 yr 10 mos",
   },
   {
     logo: "/Google_Summer_of_Code_sun_logo_2022.svg.webp",
     company: "Google Summer of Code",
     role: "Software Developer",
-    year: "2025",
+    year: "May 2025 - Sep 2025 · 5 mos",
   },
   {
     logo: "/vitess.png",
     company: "Linux Foundation",
     role: "LFX Intern, Vitess",
-    year: "2024",
+    year: "Jun 2024 - Aug 2024 · 3 mos",
   },
 ];
 
@@ -57,19 +59,18 @@ const thumbTones = {
 
 const sideProjects = [
   {
-    title: "odd-hours notes",
-    desc: "A tiny CLI that dumps whatever is in my head at 2am into a dated file.",
-    tone: "mint" as const,
-  },
-  {
-    title: "heatmap toys",
-    desc: "Playing with contribution graphs until they look like something.",
+    title: "llmbuys",
+    desc: "Audits your website by asking the questions customers ask AI, and tests if it gets the answers right.",
     tone: "peach" as const,
+    url: "https://github.com/kirtanchandak/llmbuys",
+    emoji: "🛍️",
   },
   {
-    title: "dispatch sketches",
-    desc: "Early UI experiments for the agent-dispatch timeline.",
+    title: "rant",
+    desc: "A brain dump and private journal with pgvector search so old notes come back when you need them.",
     tone: "ink" as const,
+    url: "https://github.com/kirtanchandak/rant",
+    emoji: "🧠",
   },
 ];
 
@@ -131,6 +132,20 @@ const tweets = [
   },
 ];
 
+const mecore = [
+  "People always remember how you made them feel.",
+  "Caring deeply about something is rare, and beautiful.",
+  "Don't judge people. You rarely know their full story.",
+  "Focus on improving your technique, outcomes will follow.",
+  "Just showing up every day can change your life.",
+  "Being fun to work with is a competitive advantage.",
+  "Stay humble. You're not above anyone.",
+  "There is no such thing as a bad decision.",
+  "Being on time is a sign of respect.",
+  "Good taste is a muscle that can be built.",
+  "There's no meaning to life. Find what gives you joy and do more of it.",
+];
+
 const label = "mb-2.5 text-xs font-bold uppercase tracking-[0.12em] text-neutral-900";
 const lede = "mb-7 max-w-[560px] text-[15px] leading-[1.65] text-neutral-700";
 const section = "pb-20 max-[560px]:pb-14";
@@ -185,7 +200,9 @@ function PhonePair() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const githubData = await getGitHubContributionsMultiYear(3, "kirtanchandak");
+
   return (
     <ModeSwitch>
     <main
@@ -193,14 +210,23 @@ export default function Home() {
       className="mx-auto max-w-[720px] px-6 pb-20 pt-14 max-[720px]:px-5 max-[720px]:pb-16 max-[720px]:pt-7"
     >
       <section className="flex flex-col items-start pb-[72px] text-left max-[720px]:pb-14">
-        <Image
-          src="/kirtan.webp"
-          alt="Kirtan Chandak"
-          width={92}
-          height={92}
-          priority
-          className="mb-7 size-[120px] rounded-full object-cover transition-transform duration-300 hover:scale-105"
-        />
+        <div className="group relative mb-7 size-[120px]">
+          <Image
+            src="/kirtan.webp"
+            alt="Kirtan Chandak"
+            width={120}
+            height={120}
+            priority
+            className="absolute inset-0 size-full rounded-full object-cover group-hover:hidden"
+          />
+          <img
+            src="/daemon-front.jpg"
+            alt="Daemon"
+            width={120}
+            height={120}
+            className="absolute inset-0 size-full rounded-full object-cover hidden group-hover:block"
+          />
+        </div>
         <h1 className="font-display text-[34px] font-bold leading-[1.1] tracking-[-0.04em] text-neutral-900 max-[720px]:text-[32px]">
           Software Developer.
         </h1>
@@ -209,21 +235,22 @@ export default function Home() {
         </p>
         <div id="about" className="mt-7 max-w-[560px] scroll-mt-8 space-y-4 text-base leading-[1.7] text-neutral-700">
           <p>
-            I build AI agents and developer tooling at{" "}
+            I build AI agents and tools at{" "}
             <a
-              href="https://kuration.ai"
+              href="https://kurationai.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-neutral-900 underline underline-offset-[3px]"
             >
-              Kuration AI
+              Kuration AI.
             </a>
-            , a Hong Kong company I joined as an intern and stayed with after they
-            made me full-time.
           </p>
           <p>
-            I was a GSoC contributor with OpenFoodFacts and an LFX intern on
-            Vitess. I write code at odd hours and ship things that mostly work.
+            Most of my time goes into building AI agents, exploring new products and contributing to open source projects.
+          </p>
+          <p>
+            I was a Google Summer of Code contributor with OpenFoodFacts and a LFX mentee with Vitess.
+            I write code at odd hours and ship things that mostly work.
           </p>
           <p>
             Some of the better conversations I have started with a random hello.{" "}
@@ -264,7 +291,14 @@ export default function Home() {
         </ul>
       </section>
 
-      <section id="work" className={`flex scroll-mt-6 flex-col gap-14 ${section}`}>
+      {githubData.length > 0 && (
+        <section className={section}>
+          <h2 className={label}>GiTHUB</h2>
+          <GitHubGraph data={githubData} />
+        </section>
+      )}
+
+      {/* <section id="work" className={`flex scroll-mt-6 flex-col gap-14 ${section}`}>
         {work.map((item) => (
           <article key={item.title} className="group">
             <div
@@ -282,29 +316,39 @@ export default function Home() {
             <p className="mt-1 text-sm text-neutral-500">{item.desc}</p>
           </article>
         ))}
-      </section>
+      </section> */}
 
       <section className={section}>
         <h2 className={label}>Side projects</h2>
         <p className={lede}>Small things I build when I am avoiding the larger ones.</p>
         <ul className="flex flex-col gap-[18px]">
           {sideProjects.map((item) => (
-            <li key={item.title} className="flex items-center gap-4">
-              <span
-                className={`flex size-[72px] shrink-0 items-center justify-center rounded-[10px] text-[28px] font-semibold text-white ${thumbTones[item.tone]}`}
+            <li key={item.title}>
+              <a 
+                href={item.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group flex items-center gap-4 rounded-xl p-2 -m-2 transition-colors"
               >
-                {item.tone === "ink" ? "b" : null}
-              </span>
-              <span>
-                <strong className="block text-[15px] font-semibold">{item.title}</strong>
-                <p className="mt-0.5 text-[13px] text-neutral-500">{item.desc}</p>
-              </span>
+                <span
+                  className={`flex size-[72px] shrink-0 items-center justify-center rounded-[10px] text-[32px] ${thumbTones[item.tone]}`}
+                >
+                  {item.emoji}
+                </span>
+                <span className="flex-1">
+                  <strong className="block text-[15px] font-semibold">{item.title}</strong>
+                  <p className="mt-0.5 text-[13px] text-neutral-500">{item.desc}</p>
+                </span>
+                <span className="text-neutral-300 group-hover:text-neutral-800 dark:group-hover:text-neutral-200 transition-colors pr-2">
+                  <SocialIcon name="github" />
+                </span>
+              </a>
             </li>
           ))}
         </ul>
       </section>
 
-      <section className={section}>
+      {/* <section className={section}>
         <h2 className={label}>Travel</h2>
         <p className={lede}>
           I grew up moving around India and still try to land in a new city when
@@ -321,9 +365,9 @@ export default function Home() {
             </span>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className={section}>
+      {/* <section className={section}>
         <h2 className={label}>Impact</h2>
         <div className="grid grid-cols-4 gap-4 pt-2 text-center max-[720px]:grid-cols-2 max-[720px]:gap-x-3 max-[720px]:gap-y-6">
           {impact.map((item) => (
@@ -337,9 +381,9 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className={section}>
+      {/* <section className={section}>
         <h2 className={label}>Partnerships</h2>
         <p className={lede}>
           Teams and tools I have actually touched, plus a few names I am filling
@@ -359,9 +403,9 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className={section}>
+      {/* <section className={section}>
         <h2 className={label}>Feedback</h2>
         <ul className="list-disc pl-[18px]">
           {feedback.map((line) => (
@@ -370,9 +414,9 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
 
-      <section className={section}>
+      {/* <section className={section}>
         <h2 className={label}>Instagram</h2>
         <div className="grid grid-cols-2 justify-items-center gap-5 max-[560px]:gap-3">
           {instagram.map((item) => (
@@ -386,6 +430,18 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </section> */}
+
+      <section className={section}>
+        <h2 className={label}>ME CORE</h2>
+        <p className="mb-5 text-[15px] text-neutral-700">In no particular order:</p>
+        <ul className="list-disc pl-[18px] space-y-3 marker:text-neutral-400">
+          {mecore.map((line) => (
+            <li key={line} className="text-[15px] text-neutral-700">
+              {line}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className={section}>
