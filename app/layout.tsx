@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, JetBrains_Mono, Manrope } from "next/font/google";
+import { ModeProvider } from "./components/ModeProvider";
 import Nav from "./components/Nav";
 import "./globals.css";
 
@@ -13,6 +14,12 @@ const manrope = Manrope({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   variable: "--font-manrope",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
@@ -29,10 +36,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable} ${inter.className}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${manrope.variable} ${jetbrains.variable} ${inter.className}`}
+    >
       <body>
-        <Nav />
-        {children}
+        <ModeProvider>
+          <Nav />
+          {children}
+        </ModeProvider>
       </body>
     </html>
   );

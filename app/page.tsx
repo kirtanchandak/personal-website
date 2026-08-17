@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ModeSwitch from "./components/ModeSwitch";
 
 const experience = [
   {
@@ -186,6 +187,7 @@ function PhonePair() {
 
 export default function Home() {
   return (
+    <ModeSwitch>
     <main
       id="top"
       className="mx-auto max-w-[720px] px-6 pb-20 pt-14 max-[720px]:px-5 max-[720px]:pb-16 max-[720px]:pt-7"
@@ -199,7 +201,7 @@ export default function Home() {
           priority
           className="mb-7 size-[120px] rounded-full object-cover transition-transform duration-300 hover:scale-105"
         />
-        <h1 className="font-display text-[44px] font-bold leading-[1.1] tracking-[-0.04em] text-neutral-900 max-[720px]:text-[32px]">
+        <h1 className="font-display text-[34px] font-bold leading-[1.1] tracking-[-0.04em] text-neutral-900 max-[720px]:text-[32px]">
           Software Developer.
         </h1>
         <p className="font-display mt-2.5 text-[22px] font-bold leading-snug tracking-[-0.03em] text-neutral-900">
@@ -455,5 +457,6 @@ export default function Home() {
         </nav>
       </footer>
     </main>
+    </ModeSwitch>
   );
 }
