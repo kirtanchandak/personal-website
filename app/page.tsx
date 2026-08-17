@@ -199,8 +199,24 @@ function PhonePair() {
   );
 }
 
+async function getWeather() {
+  try {
+    const res = await fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=18.5204&longitude=73.8567&current_weather=true",
+      { next: { revalidate: 3600 } }
+    );
+    const data = await res.json();
+    const c = Math.round(data.current_weather.temperature);
+    const f = Math.round((c * 9) / 5 + 32);
+    return `${c}°C / ${f}°F`;
+  } catch (error) {
+    return "28°C / 82°F";
+  }
+}
+
 export default async function Home() {
   const githubData = await getGitHubContributionsMultiYear(3, "kirtanchandak");
+  const weather = await getWeather();
 
   return (
     <ModeSwitch>
@@ -494,7 +510,7 @@ export default async function Home() {
         id="contact"
         className="mt-4 flex scroll-mt-6 items-center justify-between gap-6 border-t border-neutral-200 py-8 text-sm text-neutral-500 max-sm:flex-col max-sm:items-start"
       >
-        <p>28°C / 82°F · Pune, India</p>
+        <p>{weather} · Pune, India</p>
         <nav className="flex flex-wrap gap-6">
           <a
             href="https://github.com/kirtanchandak"
