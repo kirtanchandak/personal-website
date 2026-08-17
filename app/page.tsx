@@ -516,25 +516,28 @@ export default async function Home() {
             href="https://github.com/kirtanchandak"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-800"
+            className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors"
           >
-            GitHub
+            <span className="text-[#24292f]"><SocialIcon name="github" /></span>
+            <span>GitHub</span>
           </a>
           <a
             href="https://x.com/kirtanchandak"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-800"
+            className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors"
           >
-            Twitter (X)
+            <span className="text-black"><SocialIcon name="twitter" /></span>
+            <span>Twitter (X)</span>
           </a>
           <a
             href="https://linkedin.com/in/kirtanchandak"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-800"
+            className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors"
           >
-            LinkedIn
+            <span className="text-[#0A66C2]"><SocialIcon name="linkedin" /></span>
+            <span>LinkedIn</span>
           </a>
         </nav>
       </footer>
