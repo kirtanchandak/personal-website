@@ -1,31 +1,52 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider"
+import { Inter, JetBrains_Mono, Manrope } from "next/font/google";
+import { ModeProvider } from "./components/ModeProvider";
+import Nav from "./components/Nav";
 import "./globals.css";
-import { RESUME_DATA } from "@/data/resume-data";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-manrope",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-jetbrains",
+});
 
 export const metadata: Metadata = {
-  title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
+  title: "Kirtan Chandak",
+  description:
+    "Software developer at Kuration AI. Agents, MCP servers, and developer tooling. GSoC contributor and LFX intern.",
+  openGraph: {
+    title: "Kirtan Chandak",
+    description:
+      "Software developer at Kuration AI. Agents, MCP servers, and developer tooling.",
+    type: "website",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </body>
+    <html
+      lang="en"
+      className={`${inter.variable} ${manrope.variable} ${jetbrains.variable} ${inter.className}`}
+      suppressHydrationWarning
+    >
+      <body suppressHydrationWarning>
+        <ModeProvider>
+          <Nav />
+          {children}
+        </ModeProvider>
+      </body>
     </html>
   );
 }
