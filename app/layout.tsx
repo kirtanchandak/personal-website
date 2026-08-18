@@ -72,6 +72,14 @@ export const metadata: Metadata = {
     siteName: "Kirtan Chandak",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/kirtan.webp",
+        width: 400,
+        height: 400,
+        alt: "Kirtan Chandak",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -79,6 +87,7 @@ export const metadata: Metadata = {
     description:
       "Building AI agents and developer tools at Kuration AI. GSoC contributor & LFX intern at Vitess.",
     creator: "@kaborundak",
+    images: ["/kirtan.webp"],
   },
   alternates: {
     canonical: "https://kirtanchandak.in",
