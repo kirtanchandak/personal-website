@@ -296,18 +296,20 @@ export default async function Home() {
           {experience.map((item) => (
             <li
               key={item.company}
-              className="grid grid-cols-[minmax(160px,1fr)_minmax(140px,1.1fr)_auto] items-center gap-4 border-b border-[#eee] py-5 max-[560px]:grid-cols-[1fr_auto] max-[560px]:gap-x-4 max-[560px]:gap-y-2 max-[560px]:py-4"
+              className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 border-b border-[#eee] py-4 sm:py-5"
             >
-              <span className="flex items-center gap-3 text-[15px] font-semibold tracking-[-0.015em] text-[#1a1a1a]">
+              <div className="flex items-center gap-3 sm:w-[180px] shrink-0">
                 <span className="flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white">
                   <Image src={item.logo} alt="" width={28} height={28} className="size-7 object-contain" />
                 </span>
-                {item.company}
-              </span>
-              <span className="text-[15px] text-[#8e8e8e] max-[560px]:col-start-1 max-[560px]:pl-10">
+                <span className="text-[15px] font-semibold tracking-[-0.015em] text-[#1a1a1a]">
+                  {item.company}
+                </span>
+              </div>
+              <span className="text-[14px] text-[#8e8e8e] pl-10 sm:pl-0 flex-1">
                 {item.role}
               </span>
-              <span className="min-w-[3.2em] text-right text-[15px] text-[#8e8e8e] max-[560px]:col-start-2 max-[560px]:row-start-1">
+              <span className="text-[13px] sm:text-[15px] text-[#a0a0a0] sm:text-[#8e8e8e] pl-10 sm:pl-0 sm:text-right shrink-0">
                 {item.year}
               </span>
             </li>
@@ -364,20 +366,22 @@ export default async function Home() {
                 href={item.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group flex items-center gap-5 hover:bg-neutral-100 rounded-2xl p-4 -m-4 transition-all duration-300"
+                className="group flex items-start sm:items-center gap-4 sm:gap-5 hover:bg-neutral-100 rounded-2xl p-3 sm:p-4 -mx-3 sm:-m-4 transition-all duration-300"
               >
                 <span
-                  className={`flex size-[72px] shrink-0 items-center justify-center rounded-[10px] text-[32px] ${thumbTones[item.tone]}`}
+                  className={`flex size-14 sm:size-[72px] shrink-0 items-center justify-center rounded-[10px] text-2xl sm:text-[32px] ${thumbTones[item.tone]}`}
                 >
                   {item.emoji}
                 </span>
-                <span className="flex-1">
-                  <strong className="block text-[15px] font-semibold">{item.title}</strong>
-                  <p className="mt-0.5 text-[13px] text-neutral-500">{item.desc}</p>
-                </span>
-                <span className="text-neutral-300 group-hover:text-neutral-800 dark:group-hover:text-neutral-200 transition-colors pr-2">
-                  <SocialIcon name="github" />
-                </span>
+                <div className="flex-1 min-w-0 pr-1 sm:pr-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <strong className="block text-[15px] font-semibold truncate">{item.title}</strong>
+                    <span className="text-neutral-300 group-hover:text-neutral-800 dark:group-hover:text-neutral-200 transition-colors shrink-0">
+                      <SocialIcon name="github" />
+                    </span>
+                  </div>
+                  <p className="mt-0.5 text-[13px] text-neutral-500 leading-relaxed">{item.desc}</p>
+                </div>
               </a>
             </li>
           ))}
