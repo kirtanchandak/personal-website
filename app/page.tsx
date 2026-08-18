@@ -24,6 +24,13 @@ const experience = [
   },
 ];
 
+const technologies = [
+  "Python", "TypeScript", "Next.js", "React", "Docker", "AWS", 
+  "MongoDB", "PostgreSQL", "Prisma", "FastAPI", "Azure", 
+  "Supabase", "Node.js", "Express.js", "SQL", "Clerk",
+  "GitHub Actions"
+];
+
 const workTones = {
   yellow: "bg-[#f6e7b8]",
   dark: "bg-[#0c1220]",
@@ -51,6 +58,8 @@ const thumbTones = {
   mint: "bg-[radial-gradient(circle_at_30%_30%,#7ee0c6,transparent_50%),radial-gradient(circle_at_80%_70%,#4bb8d0,#1f6f63)]",
   peach: "bg-[linear-gradient(135deg,#ffb07a,#ff6b8a_60%,#c45cff)]",
   ink: "bg-neutral-950",
+  blue: "bg-[linear-gradient(135deg,#4FACFE,#00F2FE)]",
+  gold: "bg-[linear-gradient(135deg,#F6D365,#FDA085)]",
 } as const;
 
 const sideProjects = [
@@ -246,7 +255,7 @@ export default async function Home() {
           Software Developer.
         </h1>
         <p className="font-display mt-2.5 text-[22px] font-bold leading-snug tracking-[-0.03em] text-neutral-900">
-          Building AI agents and why tooling matters.
+          Building AI agents and tools.
         </p>
         <div id="about" className="mt-7 max-w-[560px] scroll-mt-8 space-y-4 text-base leading-[1.7] text-neutral-700">
           <p>
@@ -374,6 +383,22 @@ export default async function Home() {
           ))}
         </ul>
       </section>
+
+      <section className={section}>
+        <h2 className={label}>Things I've worked on</h2>
+        <div className="flex flex-wrap gap-2 pt-2">
+          {technologies.map((tech) => (
+            <span 
+              key={tech} 
+              className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-[13px] font-medium text-neutral-600"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </section>
+
+
 
       {/* <section className={section}>
         <h2 className={label}>Travel</h2>
