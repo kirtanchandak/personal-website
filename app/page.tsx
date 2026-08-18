@@ -227,8 +227,47 @@ export default async function Home() {
   const githubData = await getGitHubContributionsMultiYear(3, "kirtanchandak");
   const weather = await getWeather();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Kirtan Chandak",
+    url: "https://kirtanchandak.in",
+    image: "https://kirtanchandak.in/kirtan.webp",
+    jobTitle: "Software Developer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Kuration AI",
+      url: "https://kurationai.com",
+    },
+    description:
+      "Software developer building AI agents, MCP servers, and developer tooling. Google Summer of Code contributor and LFX intern at Vitess.",
+    sameAs: [
+      "https://github.com/kirtanchandak",
+      "https://twitter.com/kaborundak",
+      "https://linkedin.com/in/kirtanchandak",
+    ],
+    knowsAbout: [
+      "Artificial Intelligence",
+      "AI Agents",
+      "MCP Servers",
+      "TypeScript",
+      "Python",
+      "Next.js",
+      "React",
+      "Open Source",
+    ],
+    alumniOf: {
+      "@type": "Organization",
+      name: "Google Summer of Code",
+    },
+  };
+
   return (
     <ModeSwitch>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
     <main
       id="top"
       className="mx-auto max-w-[720px] px-6 pb-20 pt-14 max-[720px]:px-5 max-[720px]:pb-16 max-[720px]:pt-7"
@@ -252,7 +291,7 @@ export default async function Home() {
           />
         </div>
         <h1 className="font-display text-[34px] font-bold leading-[1.1] tracking-[-0.04em] text-neutral-900 max-[720px]:text-[32px]">
-          Software Developer.
+          <span className="sr-only">Kirtan Chandak — </span>Software Developer.
         </h1>
         <p className="font-display mt-2.5 text-[22px] font-bold leading-snug tracking-[-0.03em] text-neutral-900">
           Building AI agents and tools.

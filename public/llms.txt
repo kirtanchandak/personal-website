@@ -1,0 +1,38 @@
+# Kirtan Chandak
+
+> Software developer at Kuration AI, building AI agents, MCP servers, and developer tooling. Google Summer of Code contributor and LFX intern at Vitess (Linux Foundation).
+
+## About
+
+Kirtan Chandak is a software developer based in Pune, India. He currently works at Kuration AI as a Founding Engineer, building AI agents and developer tools. He was a Google Summer of Code contributor with OpenFoodFacts and a Linux Foundation (LFX) mentee with Vitess.
+
+He is also a Microsoft Student Ambassador and has won hackathons including ETH Global Online and Smart India Hackathon.
+
+## Experience
+
+- [Kuration AI](https://kurationai.com): Software Developer (Nov 2024 – Present)
+- [Google Summer of Code](https://summerofcode.withgoogle.com): Software Developer (May 2025 – Sep 2025)
+- [Linux Foundation (Vitess)](https://vitess.io): LFX Intern (Jun 2024 – Aug 2024)
+
+## Projects
+
+- [groundtruth](https://github.com/kirtanchandak/groundtruth): An autonomous AI data steward that continuously audits enterprise databases.
+- [baton](https://github.com/flex3-org/baton): Keeps context alive across async agent handoffs. Built for Slack.
+
+## Side Projects
+
+- [llmbuys](https://github.com/kirtanchandak/llmbuys): An AI agent skill that audits your website by testing what AI says about your product to customers.
+- [rant](https://github.com/kirtanchandak/rant): A brain dump and private journal with pgvector search so old notes come back when you need them.
+- [weekend.warrior](https://github.com/kirtanchandak/weekend.warrior): A retro-themed GitHub analyzer that tracks your weekend commits with a CRT aesthetic.
+
+## Technologies
+
+Python, TypeScript, Next.js, React, Docker, AWS, MongoDB, PostgreSQL, Prisma, FastAPI, Azure, Supabase, Node.js, Express.js, SQL, Clerk, GitHub Actions
+
+## Links
+
+- [Website](https://kirtanchandak.in)
+- [GitHub](https://github.com/kirtanchandak)
+- [Twitter](https://twitter.com/kaborundak)
+- [LinkedIn](https://linkedin.com/in/kirtanchandak)
+- [Email](mailto:kirtanmchandak5@gmail.com)

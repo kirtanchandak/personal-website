@@ -1,0 +1,84 @@
+# Kirtan Chandak — Full Context
+
+> Software developer at Kuration AI, building AI agents, MCP servers, and developer tooling. Google Summer of Code contributor and LFX intern at Vitess (Linux Foundation).
+
+## Bio
+
+Kirtan Chandak is a software developer based in Pune, India. He currently works at Kuration AI as a Founding Engineer, where he builds AI agents, MCP servers, and developer tooling.
+
+He was a Google Summer of Code (GSoC) contributor with OpenFoodFacts and a Linux Foundation (LFX) mentee with Vitess. He is a Microsoft Student Ambassador and was the Lead of the Microsoft Learn Student Club at GHRCEM.
+
+Most of his time goes into building AI agents, exploring new products, and contributing to open source projects. He writes code at odd hours and ships things that mostly work.
+
+He is always up for good conversations and can be reached at kirtanmchandak5@gmail.com.
+
+## Work Experience
+
+### Kuration AI — Founding Engineer
+**November 2024 – Present**
+Building AI agents and developer tools at Kuration AI.
+
+### Google Summer of Code — Software Developer
+**May 2025 – September 2025 (5 months)**
+Open source contributor with OpenFoodFacts through the Google Summer of Code program.
+
+### Linux Foundation — LFX Intern, Vitess
+**June 2024 – August 2024 (3 months)**
+LFX mentee working on the Vitess project under the Linux Foundation.
+
+## Projects
+
+### groundtruth
+An autonomous AI data steward that continuously audits enterprise databases.
+- Repository: https://github.com/kirtanchandak/groundtruth
+
+### baton
+Keeps context alive across async agent handoffs. Built for Slack.
+- Repository: https://github.com/flex3-org/baton
+
+## Side Projects
+
+### llmbuys
+An AI agent skill that audits your website by testing what AI says about your product to customers.
+- Repository: https://github.com/kirtanchandak/llmbuys
+
+### rant
+A brain dump and private journal with pgvector search so old notes come back when you need them.
+- Repository: https://github.com/kirtanchandak/rant
+
+### weekend.warrior
+A retro-themed GitHub analyzer that tracks your weekend commits with a CRT aesthetic.
+- Repository: https://github.com/kirtanchandak/weekend.warrior
+
+## Technologies & Skills
+
+**Languages:** Python, TypeScript, SQL
+**Frontend:** Next.js, React
+**Backend:** Node.js, Express.js, FastAPI
+**Databases:** MongoDB, PostgreSQL, Prisma, Supabase
+**Cloud & DevOps:** AWS, Azure, Docker, GitHub Actions
+**Auth:** Clerk
+
+## Community & Achievements
+
+- **Microsoft Student Ambassador** (Aug 2023 – May 2025): A global group of campus leaders who are eager to help fellow students, create robust tech communities and develop technical and career skills for the future.
+- **Lead, MLSC GHRCEM** (Sep 2023 – Apr 2024): Lead of Microsoft Learn Student Club.
+- **Winner, ETH Global Online** (2024): Syntra fuses AI + Hypersync to make blockchain data instantly searchable and smart.
+- **Winner, Smart India Hackathon** (2023)
+
+## Personal Interests
+
+- Fan of Daemon Targaryen
+- Enjoys studying profit, loss, stock markets — basically everything finance
+- RCB supporter
+- Plays badminton sometimes
+- Loves old 90s playlists with a good drink
+- Always up for hackathons and building cool stuff
+
+## Contact & Links
+
+- **Website:** https://kirtanchandak.in
+- **Email:** kirtanmchandak5@gmail.com
+- **GitHub:** https://github.com/kirtanchandak
+- **Twitter:** https://twitter.com/kaborundak
+- **LinkedIn:** https://linkedin.com/in/kirtanchandak

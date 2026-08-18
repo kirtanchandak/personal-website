@@ -23,14 +23,65 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kirtan Chandak",
+  metadataBase: new URL("https://kirtanchandak.in"),
+  title: {
+    default: "Kirtan Chandak — Software Developer | AI Agents & Developer Tools",
+    template: "%s | Kirtan Chandak",
+  },
   description:
-    "Software developer at Kuration AI. Agents, MCP servers, and developer tooling. GSoC contributor and LFX intern.",
+    "Kirtan Chandak is a software developer at Kuration AI, building AI agents, MCP servers, and developer tooling. Google Summer of Code contributor, LFX intern at Vitess (Linux Foundation), and Microsoft Student Ambassador.",
+  keywords: [
+    "Kirtan Chandak",
+    "Kirtan",
+    "Chandak",
+    "software developer",
+    "AI agents",
+    "MCP servers",
+    "developer tools",
+    "Kuration AI",
+    "Google Summer of Code",
+    "GSoC",
+    "LFX",
+    "Vitess",
+    "Linux Foundation",
+    "open source",
+    "Next.js",
+    "TypeScript",
+    "React",
+    "Python",
+    "FastAPI",
+  ],
+  authors: [{ name: "Kirtan Chandak", url: "https://kirtanchandak.in" }],
+  creator: "Kirtan Chandak",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Kirtan Chandak",
+    title: "Kirtan Chandak — Software Developer",
     description:
-      "Software developer at Kuration AI. Agents, MCP servers, and developer tooling.",
+      "Software developer at Kuration AI building AI agents, MCP servers, and developer tooling. GSoC contributor & LFX intern.",
+    url: "https://kirtanchandak.in",
+    siteName: "Kirtan Chandak",
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kirtan Chandak — Software Developer",
+    description:
+      "Building AI agents and developer tools at Kuration AI. GSoC contributor & LFX intern at Vitess.",
+    creator: "@kaborundak",
+  },
+  alternates: {
+    canonical: "https://kirtanchandak.in",
   },
 };
 
