@@ -13,7 +13,6 @@ const COMMANDS: Record<string, () => ListResult | TextResult | TableResult> = {
   help: () => ({
     type: "list",
     lines: [
-      { cmd: "/resume", desc: "download resume as PDF" },
       { cmd: "/exp", desc: "view work experience" },
       { cmd: "/projects", desc: "view recent work" },
       { cmd: "/sideprojects", desc: "view side projects" },
@@ -67,10 +66,6 @@ const COMMANDS: Record<string, () => ListResult | TextResult | TableResult> = {
       "and finally suiiiiiiiiiiiiiii!!!",
     ],
   }),
-  resume: () => ({
-    type: "text",
-    lines: ["-> downloading resume.pdf ...", "(wire this up to your actual file)"],
-  }),
   contact: () => ({
     type: "text",
     lines: [
@@ -109,7 +104,7 @@ const ASCII_LOGO = [
 const BOOT_STEPS = [
   { text: "initializing shell...", delay: 120 },
   { text: "loading kirtan.dev v1.0.0", delay: 120 },
-  { text: "resolving modules: resume, exp, projects, sideprojects, mecore", delay: 160 },
+  { text: "resolving modules: exp, projects, sideprojects, mecore", delay: 160 },
   { text: "connecting to github api... ok", delay: 140 },
   { text: "connecting to kuration.ai... ok", delay: 140 },
   { text: "", delay: 80 },
@@ -314,7 +309,7 @@ export default function Terminal() {
           <span className="ml-2 text-xs text-[#5b6472]">guest@kirtan.dev - zsh</span>
         </div>
 
-        <div className="max-h-[420px] min-h-80 overflow-y-auto px-[18px] py-4 text-[13.5px] leading-[1.7]">
+        <div className="max-h-[420px] min-h-80 overflow-y-auto px-[18px] py-4 text-[13.5px] leading-[1.7] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#262b33] [&::-webkit-scrollbar-thumb]:rounded-full">
           <pre
             className={`m-0 text-[12.5px] leading-[1.35] text-[#e8a24a] ${logoLines > 0 ? "mb-2.5" : ""}`}
           >
