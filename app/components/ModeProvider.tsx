@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-export type SiteMode = "calm" | "nerd";
+export type SiteMode = "calm" | "nerd" | "mac";
 
 const ModeContext = createContext<{
   mode: SiteMode;

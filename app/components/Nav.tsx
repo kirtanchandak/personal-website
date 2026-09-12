@@ -1,11 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useMode } from "./ModeProvider";
+import { useMode, type SiteMode } from "./ModeProvider";
+
+const MODES: { id: SiteMode; label: string }[] = [
+  { id: "calm", label: "Calm" },
+  { id: "nerd", label: "Terminal" },
+  { id: "mac", label: "Mac" },
+];
 
 export default function Nav() {
   const { mode, setMode } = useMode();
   const nerd = mode === "nerd";
+
+  // Mac mode is immersive — the desktop has its own menu bar with an exit button.
+  if (mode === "mac") return null;
 
   return (
     <header className={nerd ? "bg-[#0d1117]" : "bg-white"}>
@@ -25,32 +34,29 @@ export default function Nav() {
           role="tablist"
           aria-label="Site mode"
         >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={!nerd}
-            onClick={() => setMode("calm")}
-            className={`rounded-md px-3 py-1.5 transition-colors ${
-              !nerd
-                ? "bg-white text-neutral-900 shadow-sm"
-                : "text-neutral-500"
-            }`}
-          >
-            Calm mode
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={nerd}
-            onClick={() => setMode("nerd")}
-            className={`rounded-md px-3 py-1.5 transition-colors ${
-              nerd
-                ? "bg-[#3a3a3a] text-neutral-100 shadow-sm"
-                : "text-neutral-400"
-            }`}
-          >
-            Nerd mode
-          </button>
+          {MODES.map((m) => {
+            const active = mode === m.id;
+            return (
+              <button
+                key={m.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setMode(m.id)}
+                className={`rounded-md px-3 py-1.5 transition-colors ${
+                  active
+                    ? nerd
+                      ? "bg-[#3a3a3a] text-neutral-100 shadow-sm"
+                      : "bg-white text-neutral-900 shadow-sm"
+                    : nerd
+                      ? "text-neutral-400"
+                      : "text-neutral-500"
+                }`}
+              >
+                {m.label}
+              </button>
+            );
+          })}
         </div>
       </div>
     </header>

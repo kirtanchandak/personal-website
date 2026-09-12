@@ -22,6 +22,10 @@ html[data-mode="nerd"] body {
   color: #c9d1d9;
 }
 
+html[data-mode="mac"] body {
+  background: #e8e8e6;
+}
+
 ::selection {
   background: #ff2a85;
   color: #fff;

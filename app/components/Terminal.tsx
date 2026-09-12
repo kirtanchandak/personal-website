@@ -216,7 +216,11 @@ function HistoryLine({ item }: { item: HistoryItem }) {
   );
 }
 
-export default function Terminal() {
+/**
+ * The interactive terminal box — usable standalone or embedded inside a window.
+ * `compact` trims height and font size slightly for the Mac Terminal window.
+ */
+export function TerminalCore({ compact = false }: { compact?: boolean }) {
   const [booted, setBooted] = useState(false);
   const [logoLines, setLogoLines] = useState(0);
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -296,55 +300,67 @@ export default function Terminal() {
     }
   };
 
+  const fs = compact ? "text-[11.5px]" : "text-[13.5px]";
+  const logoFs = compact ? "text-[10px]" : "text-[12.5px]";
+
   return (
     <div
-      className="flex min-h-[calc(100vh-72px)] justify-center bg-[#0d1117] px-5 py-10 font-mono"
+      className="flex h-full flex-col bg-[#111318] font-mono"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-[#262b33] bg-[#111318] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+      <div
+        className={`min-h-0 flex-1 overflow-y-auto px-[18px] py-4 ${fs} leading-[1.7] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#262b33]`}
+      >
+        <pre
+          className={`m-0 ${logoFs} leading-[1.35] text-[#e8a24a] ${logoLines > 0 ? "mb-2.5" : ""}`}
+        >
+          {ASCII_LOGO.slice(0, logoLines).join("\n")}
+        </pre>
+        {!booted && (
+          <BootSequence
+            onLogoLine={() => setLogoLines((n) => n + 1)}
+            onLine={handleBootLine}
+            onDone={() => setBooted(true)}
+          />
+        )}
+        {history.map((item, i) => (
+          <HistoryLine key={i} item={item} />
+        ))}
+        <div ref={bottomRef} />
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className={`flex shrink-0 items-center gap-1.5 border-t border-[#262b33] px-[18px] py-2.5 ${booted ? "opacity-100" : "opacity-35"}`}
+      >
+        <span className={`${fs} text-[#5b6472]`}>guest@kirtan.dev</span>
+        <span className={`${fs} text-[#3d4552]`}>:~$</span>
+        <input
+          ref={inputRef}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={!booted}
+          spellCheck={false}
+          className={`min-w-0 flex-1 bg-transparent font-mono ${fs} text-[#e8e8e8] outline-none`}
+          placeholder={booted ? "try /projects, /sideprojects, /mecore, help" : ""}
+        />
+      </form>
+    </div>
+  );
+}
+
+export default function Terminal() {
+  return (
+    <div className="flex min-h-[calc(100vh-72px)] justify-center bg-[#0d1117] px-5 py-10">
+      <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-[#262b33] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-2 border-b border-[#262b33] bg-[#15181e] px-3.5 py-2.5">
           <span className="inline-block size-[11px] rounded-full bg-[#ff5f56]" />
           <span className="inline-block size-[11px] rounded-full bg-[#ffbd2e]" />
           <span className="inline-block size-[11px] rounded-full bg-[#27c93f]" />
           <span className="ml-2 text-xs text-[#5b6472]">guest@kirtan.dev - zsh</span>
         </div>
-
-        <div className="max-h-[420px] min-h-80 overflow-y-auto px-[18px] py-4 text-[13.5px] leading-[1.7] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#262b33] [&::-webkit-scrollbar-thumb]:rounded-full">
-          <pre
-            className={`m-0 text-[12.5px] leading-[1.35] text-[#e8a24a] ${logoLines > 0 ? "mb-2.5" : ""}`}
-          >
-            {ASCII_LOGO.slice(0, logoLines).join("\n")}
-          </pre>
-          {!booted && (
-            <BootSequence
-              onLogoLine={() => setLogoLines((n) => n + 1)}
-              onLine={handleBootLine}
-              onDone={() => setBooted(true)}
-            />
-          )}
-          {history.map((item, i) => (
-            <HistoryLine key={i} item={item} />
-          ))}
-          <div ref={bottomRef} />
-        </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className={`flex items-center gap-1.5 border-t border-[#262b33] px-[18px] py-2.5 ${booted ? "opacity-100" : "opacity-35"}`}
-        >
-          <span className="text-[13.5px] text-[#5b6472]">guest@kirtan.dev</span>
-          <span className="text-[13.5px] text-[#3d4552]">:~$</span>
-          <input
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={!booted}
-            spellCheck={false}
-            className="min-w-0 flex-1 bg-transparent font-mono text-[13.5px] text-[#e8e8e8] outline-none"
-            placeholder={booted ? "try /projects, /sideprojects, /mecore, help" : ""}
-          />
-        </form>
+        <TerminalCore />
       </div>
     </div>
   );
