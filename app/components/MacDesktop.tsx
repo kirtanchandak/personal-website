@@ -653,7 +653,7 @@ function MenuClock() {
     const t = setInterval(() => setNow(new Date()), 30_000);
     return () => clearInterval(t);
   }, []);
-  if (!now) return <span className="w-[110px]" />;
+  if (!now) return <span className="hidden w-[110px] sm:inline-block" />;
   const day = now.toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
@@ -665,7 +665,8 @@ function MenuClock() {
   });
   return (
     <span className="whitespace-nowrap tabular-nums">
-      {day} {time}
+      <span className="max-sm:hidden">{day} </span>
+      {time}
     </span>
   );
 }
@@ -804,6 +805,11 @@ export default function MacDesktop() {
   const onSpinStart = (e: React.PointerEvent) => {
     // Anything inside the screen (windows, dock, menu bar) should not spin the laptop.
     if ((e.target as HTMLElement).closest("[data-no-spin]")) return;
+    // Touch/pen drags are reserved for normal page scrolling on mobile — only
+    // a real mouse drag should spin the laptop. Without this, a swipe to
+    // scroll gets hijacked as a rotation and can get stuck mid-rotation,
+    // which then clips menu-bar content via the 3D perspective.
+    if (e.pointerType !== "mouse") return;
     spinDrag.current = {
       startX: e.clientX,
       startY: e.clientY,
@@ -815,7 +821,7 @@ export default function MacDesktop() {
   return (
     <div
       onPointerDown={onSpinStart}
-      className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#e8e8e6] px-3 py-10 sm:px-8"
+      className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#e8e8e6] px-2 py-6 sm:px-8 sm:py-10"
     >
       {/* 3D stage */}
       <div className="w-full max-w-[1080px] [perspective:1800px]">
@@ -840,22 +846,26 @@ export default function MacDesktop() {
             <div className="pointer-events-none absolute left-1/2 top-0 z-40 h-[14px] w-[110px] -translate-x-1/2 rounded-b-[8px] bg-[#0a0a0c] max-sm:hidden" />
 
             {/* menu bar */}
-            <div className="relative z-30 flex h-7 items-center justify-between bg-white/60 px-3 text-[11px] font-medium text-neutral-800 backdrop-blur-md">
-              <div className="flex items-center gap-3.5">
-                <AppleLogo className="h-[13px] w-auto fill-neutral-800" />
-                <span className="font-bold">Kirtan Chandak</span>
+            <div className="relative z-30 flex h-7 shrink-0 items-center justify-between gap-2 overflow-hidden bg-white/60 px-2 text-[11px] font-medium text-neutral-800 backdrop-blur-md sm:px-3">
+              <div className="flex min-w-0 items-center gap-2 sm:gap-3.5">
+                <AppleLogo className="h-[13px] w-auto shrink-0 fill-neutral-800" />
+                <span className="truncate font-bold">
+                  <span className="sm:hidden">Kirtan</span>
+                  <span className="max-sm:hidden">Kirtan Chandak</span>
+                </span>
                 <span className="max-sm:hidden">File</span>
                 <span className="max-sm:hidden">Edit</span>
                 <span className="max-sm:hidden">View</span>
                 <span className="max-sm:hidden">Help</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex shrink-0 items-center gap-2 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setMode("calm")}
-                  className="rounded-[5px] bg-black/10 px-2 py-0.5 text-[10px] font-semibold transition-colors hover:bg-black/20"
+                  className="rounded-[5px] bg-black/10 px-2 py-0.5 text-[10px] font-semibold whitespace-nowrap transition-colors hover:bg-black/20"
                 >
-                  Exit Mac mode
+                  <span className="sm:hidden">Exit</span>
+                  <span className="max-sm:hidden">Exit Mac mode</span>
                 </button>
                 {/* wifi */}
                 <svg
@@ -895,7 +905,7 @@ export default function MacDesktop() {
                 <div
                   key={id}
                   onPointerDown={() => focusApp(id)}
-                  className={`absolute flex flex-col overflow-hidden rounded-[10px] shadow-[0_18px_50px_rgba(0,0,0,0.4)] ring-1 ring-black/10 ${
+                  className={`absolute flex flex-col overflow-hidden rounded-[10px] shadow-[0_18px_50px_rgba(0,0,0,0.4)] ring-1 ring-black/10 max-sm:!left-[3%] max-sm:!top-[9%] max-sm:!h-auto max-sm:!max-h-[72%] max-sm:!w-[94%] max-sm:!max-w-[94%] ${
                     app.dark ? "bg-[#111318]" : "bg-[#f6f6f6]"
                   }`}
                   style={{
@@ -943,12 +953,12 @@ export default function MacDesktop() {
             })}
 
             {/* dock */}
-            <div className="absolute inset-x-0 bottom-2 z-30 flex justify-center">
-              <div className="flex items-end gap-1.5 rounded-2xl border border-white/20 bg-white/25 px-2.5 py-1.5 shadow-lg backdrop-blur-xl sm:gap-2">
+            <div className="absolute inset-x-0 bottom-2 z-30 flex justify-center px-1">
+              <div className="flex items-end gap-1 rounded-2xl border border-white/20 bg-white/25 px-1.5 py-1.5 shadow-lg backdrop-blur-xl sm:gap-2 sm:px-2.5">
                 {APPS.map((app) => (
                   <div key={app.id} className="flex items-end">
                     {app.sep && (
-                      <span className="mx-1 mb-1.5 h-9 w-px self-end bg-black/20 sm:h-11" />
+                      <span className="mx-0.5 mb-1.5 h-8 w-px self-end bg-black/20 sm:mx-1 sm:h-11" />
                     )}
                     <button
                       type="button"
@@ -958,7 +968,7 @@ export default function MacDesktop() {
                       <span className="pointer-events-none absolute -top-8 whitespace-nowrap rounded-md bg-[#f0f0f0]/90 px-2.5 py-0.5 text-[10px] font-medium text-neutral-800 shadow-md ring-1 ring-black/10 opacity-0 transition-opacity group-hover:opacity-100">
                         {app.name}
                       </span>
-                      <span className="relative block size-9 transition-transform duration-150 group-hover:-translate-y-1.5 group-hover:scale-110 sm:size-11">
+                      <span className="relative block size-8 transition-transform duration-150 group-hover:-translate-y-1.5 group-hover:scale-110 sm:size-11">
                         {app.icon}
                         {!["trash", "about", "notes", "terminal", "projects", "mail"].includes(app.id) && (
                           <span className="pointer-events-none absolute inset-0 rounded-[22%] bg-[linear-gradient(180deg,rgba(255,255,255,0.28),rgba(255,255,255,0.06)_40%,transparent_60%)] shadow-[inset_0_0_1px_rgba(255,255,255,0.5),0_3px_8px_rgba(0,0,0,0.28)]" />
@@ -996,9 +1006,12 @@ export default function MacDesktop() {
         <div className="pointer-events-none mx-auto -mt-3 h-8 w-[78%] rounded-[50%] bg-black/25 blur-2xl" />
       </div>
 
-      <p className="mt-8 text-center text-[12px] text-neutral-500">
-        kirtanOS · click the dock icons · drag the background to spin the
-        MacBook · double-click to reset
+      <p className="mt-6 px-4 text-center text-[12px] text-neutral-500 sm:mt-8">
+        <span className="sm:hidden">kirtanOS · tap the dock</span>
+        <span className="max-sm:hidden">
+          kirtanOS · click the dock icons · drag the background to spin the
+          MacBook · double-click to reset
+        </span>
       </p>
     </div>
   );
