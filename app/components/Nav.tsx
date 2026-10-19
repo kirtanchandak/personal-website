@@ -5,6 +5,7 @@ import { useMode, type SiteMode } from "./ModeProvider";
 
 const MODES: { id: SiteMode; label: string }[] = [
   { id: "calm", label: "Calm" },
+  { id: "font", label: "My Font" },
   { id: "nerd", label: "Terminal" },
   { id: "mac", label: "Mac" },
 ];
@@ -43,7 +44,7 @@ export default function Nav() {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setMode(m.id)}
-                className={`rounded-md px-3 py-1.5 transition-colors ${
+                className={`rounded-md px-2.5 py-1.5 sm:px-3 whitespace-nowrap transition-colors ${
                   active
                     ? nerd
                       ? "bg-[#3a3a3a] text-neutral-100 shadow-sm"
