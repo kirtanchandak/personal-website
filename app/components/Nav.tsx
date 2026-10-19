@@ -5,7 +5,7 @@ import { useMode, type SiteMode } from "./ModeProvider";
 
 const MODES: { id: SiteMode; label: string }[] = [
   { id: "calm", label: "Calm" },
-  { id: "font", label: "My Font" },
+  { id: "font", label: "Handwritten" },
   { id: "nerd", label: "Terminal" },
   { id: "mac", label: "Mac" },
 ];
